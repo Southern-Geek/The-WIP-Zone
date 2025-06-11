@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Southern Geek's QR Code Scanner</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header>
+      <h1>QR Code Scanner</h1>
+      <h3>Scan QR codes with your camera</h3>
+    </header>
+    <main>
+      <div id="scanner-container">
+        <video id="video" autoplay></video>
+        <canvas id="canvas"></canvas>
+      </div>
+      <button id="start-button">Start Scanner</button>
+      <button id="stop-button">Stop Scanner</button>
+      <div id="result"></div>
+      <div id="error-message"></div>
+    </main>
+    <footer>
+      <p>&copy; 2025 Southern Geek. All rights reserved.</p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsqr/1.4.0/jsQR.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/adapter/8.0.0/adapter.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qr-scanner/1.2.0/qr-scanner.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qr-scanner/1.2.0/qr-scanner-worker.min.js"></script>
+    <script src="index.js"></script>
+    <br />
+    <p>For more information, visit <a href="https://southerngeek.com" target="_blank">Southern Geek</a>.</p>
+    <script>
+      // Initialize QR Scanner
+      const video = document.getElementById('video');
+      const canvas = document.getElementById('canvas');
+      const context = canvas.getContext('2d');
+      const resultDiv = document.getElementById('result');
+      const errorMessage = document.getElementById('error-message');
+
+      let scanner;
+
+      document.getElementById('start-button').addEventListener('click', () => {
+        scanner = new QrScanner(video, (result) => {
+          resultDiv.textContent = `QR Code Result: ${result}`;
+        }, {
+          onDecodeError: (error) => {
+            errorMessage.textContent = `Error: ${error}`;
+          }
+        });
+        scanner.start();
+      });
+
+      document.getElementById('stop-button').addEventListener('click', () => {
+        if (scanner) {
+          scanner.stop();
+          resultDiv.textContent = '';
+          errorMessage.textContent = '';
+        }
+      });
+      // Handle video stream errors
+      video.addEventListener('error', (event) => {
+        errorMessage.textContent = `Video Error: ${event.message}`;
+      });
+      // Handle canvas resizing
+      window.addEventListener('resize', () => {
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+      });
+      // Initialize canvas size
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+    </script>
+  </body>
+</html>
