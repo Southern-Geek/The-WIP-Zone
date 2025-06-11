@@ -1,0 +1,183 @@
+body {
+    background-color: black;
+    color: #faffb5;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    margin: 0;
+    /* Increase bottom padding to ensure content is not hidden behind the fixed footer */
+    padding: 0 0 48px 8px; /* 48px for footer height + 8px for spacing */
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    -webkit-font-smoothing: antialiased; /* Smooth text rendering */
+    -moz-osx-font-smoothing: grayscale; /* Smooth text rendering for Firefox */
+    text-align: center; /* Center align text */
+}
+/* Button styles */
+button {
+    background-color: #c10000; /* Crimson */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+/* Link styles */
+a {
+    color: #c10000; /* Crimson */
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+/* Additional styles for headings */
+h1, h2, h3 {
+    color: #c10000; /* Crimson */
+    font-family: Arial, sans-serif;
+}
+/* Responsive design */
+@media screen and (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+    button {
+        width: 100%;
+        padding: 10px;
+    }
+    footer {
+        font-size: 12px;
+        padding: 6px 0;
+    }
+}
+/* Footer styles */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 4px 0; /* Reduce vertical padding */
+    font-size: 14px; /* Slightly smaller text */
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    line-height: 1.2;
+    z-index: 100;
+}
+/* Navigation styles */
+nav {
+    background-color: #c10000; /* Crimson */
+    padding: 10px;
+}
+nav a {
+    color: white;
+    padding: 14px 20px;
+    text-decoration: none;
+    display: inline-block;
+}
+nav a:hover {
+    background-color: #a00000; /* Darker crimson */
+}
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+/* Image styles */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+/* Form styles */
+form {
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 8px;
+}
+input[type="text"],
+input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+input[type="submit"] {
+    background-color: #c10000; /* Crimson */
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    cursor: pointer;
+}
+input[type="submit"]:hover {
+    background-color: #a00000; /* Darker crimson */
+}
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+th {
+    background-color: #c10000; /* Crimson */
+    color: white;
+}
+td {
+    background-color: #f2f2f2;
+}
+/* Code block styles */
+code {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: 'Courier New', Courier, monospace;
+    display: block;
+    overflow-x: auto;
+}
+/* Alert styles */
+.alert {
+    padding: 20px;
+    background-color: #f44336; /* Red */
+    color: white;
+    margin-bottom: 15px;
+}
+.alert.success {
+    background-color: #c10000; /* Crimson */
+}
+.alert.info {
+    background-color: #2196F3; /* Blue */
+}
+.alert.warning {
+    background-color: #ff9800; /* Orange */
+}
+/* Card styles */
+.card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px 0;
+}
+.card h3 {
+    margin-top: 0;
+}
+/* Loading spinner styles */
+.spinner {
+    border: 4px solid #f3f3f3; /* Light grey */
+    border-top: 4px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 2s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
