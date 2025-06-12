@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Email Signup CTAs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .tab {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            font-weight: 500;
+        }
+        
+        .tab:hover, .tab.active {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .cta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .cta-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #00d4ff, #5b86e5, #36d1dc);
+        }
+        
+        .cta-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .cta-type {
+            display: inline-block;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .cta-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        
+        .cta-subtext {
+            font-size: 0.9rem;
+            color: #718096;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .copy-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .copy-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .copy-btn.copied {
+            background: #48bb78;
+        }
+        
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background: rgba(255,255,255,0.9);
+            border: 2px solid transparent;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: #4a5568;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: white;
+            border-color: #667eea;
+            color: #667eea;
+            transform: translateY(-1px);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .cta-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Tech Email Signup CTAs</h1>
+            <p>High-converting calls-to-action for your tech audience</p>
+        </div>
+        
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">All CTAs</button>
+            <button class="filter-btn" data-filter="urgency">Urgency</button>
+            <button class="filter-btn" data-filter="benefit">Benefit-Driven</button>
+            <button class="filter-btn" data-filter="curiosity">Curiosity</button>
+            <button class="filter-btn" data-filter="social">Social Proof</button>
+            <button class="filter-btn" data-filter="exclusive">Exclusive</button>
+        </div>
+        
+        <div class="cta-grid" id="ctaGrid">
+            <!-- Urgency CTAs -->
+            <div class="cta-card" data-category="urgency">
+                <div class="cta-type">Urgency</div>
+                <div class="cta-text">⚡ Get Early Access Before Launch</div>
+                <div class="cta-subtext">Join 10,000+ developers getting exclusive previews of our latest tools</div>
+                <button class="copy-btn" onclick="copyText(this, '⚡ Get Early Access Before Launch')">Copy CTA</button>
+            </div>
+            
+            <div class="cta-card" data-category="urgency">
+                <div class="cta-type">Urgency</div>
+                <div class="cta-text">🔥 Last 48 Hours - Join the Beta</div>
+                <div class="cta-subtext">Limited spots remaining for our revolutionary AI platform</div>
+                <button class="copy-btn" onclick="copyText(this, '🔥 Last 48 Hours - Join the Beta')">Copy CTA</button>
+            </div>
+            
+            <!-- Benefit-Driven CTAs -->
+            <div class="cta-card" data-category="benefit">
+                <div class="cta-type">Benefit-Driven</div>
+                <div class="cta-text">📈 3x Your Development Speed</div>
+                <div class="cta-subtext">Get weekly tips, tools, and techniques that top developers use</div>
+                <button class="copy-btn" onclick="copyText(this, '📈 3x Your Development Speed')">Copy CTA</button>
+            </div>
+            
+            <div class="cta-card" data-category="benefit">
+                <div class="cta-type">Benefit-Driven</div>
+                <div class="cta-text">💰 Save 20+ Hours Per Week</div>
+                <div class="cta-subtext">Automation secrets from Silicon Valley's top engineers</div>
+                <button class="copy-btn" onclick="copyText(this, '💰 Save 20+ Hours Per Week')">Copy CTA</button>
+            </div>
+            
+            <div class="cta-card" data-category="benefit">
+                <div class="cta-type">Benefit-Driven</div>
+                <div class="cta-text">🚀 Ship Products 5x Faster</div>
+                <div class="cta-subtext">Join 50K+ builders getting our weekly deployment strategies</div>
+                <button class="copy-btn" onclick="copyText(this, '🚀 Ship Products 5x Faster')">Copy CTA</button>
+            </div>
+            
+            <!-- Curiosity CTAs -->
+            <div class="cta-card" data-category="curiosity">
+                <div class="cta-type">Curiosity</div>
+                <div class="cta-text">🤫 The Secret Stack Top Startups Use</div>
+                <div class="cta-subtext">Discover the tools behind unicorn companies (hint: it's not what you think)</div>
+                <button class="copy-btn" onclick="copyText(this, '🤫 The Secret Stack Top Startups Use')">Copy CTA</button>
+            </div>
+            
+            <div class="cta-card" data-category="curiosity">
+                <div class="cta-type">Curiosity</div>
+                <div class="cta-text">🔍 What Google Doesn't Want You to Know</div>
+                <div class="cta-subtext">Advanced SEO tactics that actually work in 2025</div>
+                <button class="copy-btn" onclick="copyText(this, '🔍 What Google Doesn\'t Want You to Know')">Copy CTA</button>
+            </div>
+            
+            <div class="cta-card" data-category="curiosity">
+                <div class="cta-type">Curiosity</div>
+                <div class="cta-text">🧠 The AI Trick That's Changing Everything</div>
+                <div class="cta-subtext">Why everyone's talking about this new approach to machine learning</div>
+                <button class="copy-btn" onclick="copyText(this, '🧠 The AI Trick That\'s Changing Everything')">Copy CTA</button>
+            </div>
+            
+            <!-- Social Proof CTAs -->
+            <div class="cta-card" data-category="social">
+                <div class="cta-type">Social Proof</div>
+                <div class="cta-text">👥 Join 100K+ Elite Developers</div>
+                <div class="cta-subtext">Get the same insights that helped developers at Apple, Google, and Tesla</div>
+                <button class="copy-btn" onclick="copyText(this, '👥 Join 100K+ Elite Developers')">Copy CTA</button>
+            </div>
+            
+            <div class="cta-card" data-category="social">
+                <div class="cta-type">Social Proof</div>
+                <div class="cta-text">⭐ Rated #1 by 50,000+ Engineers</div>
+                <div class="cta-subtext">See why developers choose us over Stack Overflow for learning</div>
+                <button class="copy-btn" onclick="copyText(this, '⭐ Rated #1 by 50,000+ Engineers')">Copy CTA</button>
+            </div>
+            
+            <!-- Exclusive CTAs -->
+            <div class="cta-card" data-category="exclusive">
+                <div class="cta-type">Exclusive</div>
+                <div class="cta-text">🎯 VIP Access - Invitation Only</div>
+                <div class="cta-subtext">Join the private community where CTOs share their best strategies</div>
+                <button class="copy-btn" onclick="copyText(this, '🎯 VIP Access - Invitation Only')">Copy CTA</button>
+            </div>
+            
+            <div class="cta-card" data-category="exclusive">
+                <div class="cta-type">Exclusive</div>
+                <div class="cta-text">💎 Insider's Circle - Apply Now</div>
+                <div class="cta-subtext">Exclusive insights from Silicon Valley's most successful founders</div>
+                <button class="copy-btn" onclick="copyText(this, '💎 Insider\'s Circle - Apply Now')">Copy CTA</button>
+            </div>
+            
+            <!-- More Creative Ones -->
+            <div class="cta-card" data-category="curiosity">
+                <div class="cta-type">Curiosity</div>
+                <div class="cta-text">🤖 This AI Will Replace Your Job... Unless</div>
+                <div class="cta-subtext">Learn the skills that will keep you irreplaceable in the AI era</div>
+                <button class="copy-btn" onclick="copyText(this, '🤖 This AI Will Replace Your Job... Unless')">Copy CTA</button>
+            </div>
+            
+            <div class="cta-card" data-category="benefit">
+                <div class="cta-type">Benefit-Driven</div>
+                <div class="cta-text">⚡ Zero to Production in 24 Hours</div>
+                <div class="cta-subtext">The rapid deployment framework that's breaking the internet</div>
+                <button class="copy-btn" onclick="copyText(this, '⚡ Zero to Production in 24 Hours')">Copy CTA</button>
+            </div>
+            
+            <div class="cta-card" data-category="urgency">
+                <div class="cta-type">Urgency</div>
+                <div class="cta-text">🔐 Secure Your Spot - Closes Tomorrow</div>
+                <div class="cta-subtext">Final call for our exclusive developer mastermind program</div>
+                <button class="copy-btn" onclick="copyText(this, '🔐 Secure Your Spot - Closes Tomorrow')">Copy CTA</button>
+            </div>
+            
+            <div class="cta-card" data-category="social">
+                <div class="cta-type">Social Proof</div>
+                <div class="cta-text">🏆 Used by 500+ Unicorn Startups</div>
+                <div class="cta-subtext">Get the same growth tactics that built billion-dollar companies</div>
+                <button class="copy-btn" onclick="copyText(this, '🏆 Used by 500+ Unicorn Startups')">Copy CTA</button>
+            </div>
+        </div>
+    </div>
+
+<footer style="text-align: center; margin-top: 40px; color: #718096;">
+        <p>© 2025 Southern Geek. All rights reserved.</p>
+        <p>Created by <a href="https://github.com/Southern-Geek" target="_blank" style="color: #667eea; Southern Geek</a></p>
+</footer>
+
+    <script>
+        function copyText(button, text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.textContent;
+                button.textContent = '✅ Copied!';
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+        
+        // Filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const ctaCards = document.querySelectorAll('.cta-card');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                const filter = btn.dataset.filter;
+                
+                ctaCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
