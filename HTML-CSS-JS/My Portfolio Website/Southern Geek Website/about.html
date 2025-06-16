@@ -1,0 +1,263 @@
+<!-- This is a personal webpage template designed for Southern Geek. It features a dark theme with red accents, showcasing personal information, skills, experience, and contact details. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #ff0000, #cc0000);
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .section {
+            background-color: #111111;
+            border: 2px solid #ff0000;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(255, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            color: #ff0000;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #ff0000;
+            padding-bottom: 0.5rem;
+        }
+
+        .intro-section {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 3px solid #ff0000;
+            background-color: #333333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .skill-item {
+            background-color: #222222;
+            padding: 1rem;
+            border-radius: 5px;
+            border-left: 4px solid #ff0000;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .contact-item {
+            background-color: #222222;
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+            border: 1px solid #ff0000;
+        }
+
+        .contact-item h3 {
+            color: #ff0000;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #ff0000;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background-color: #ff0000;
+            border-radius: 50%;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item h3 {
+            color: #ff0000;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .intro-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Your Name</h1>
+            <p>Your Professional Title</p>
+        </header>
+
+        <section class="section">
+            <h2>About Me</h2>
+            <div class="intro-section">
+                <div class="profile-image">
+                    Your Photo Here
+                </div>
+                <div class="intro-text">
+                    <p>Welcome to my personal page! I'm passionate about [your interests/field]. With a background in [your background], I enjoy [what you enjoy doing].</p>
+                    <p>I believe in [your values/philosophy] and strive to [your goals/mission]. When I'm not [working/studying], you can find me [your hobbies].</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Skills & Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <h3>Technical Skills</h3>
+                    <p>Programming languages, software, tools you use</p>
+                </div>
+                <div class="skill-item">
+                    <h3>Soft Skills</h3>
+                    <p>Communication, leadership, problem-solving, etc.</p>
+                </div>
+                <div class="skill-item">
+                    <h3>Languages</h3>
+                    <p>Languages you speak and proficiency levels</p>
+                </div>
+                <div class="skill-item">
+                    <h3>Interests</h3>
+                    <p>Your hobbies and personal interests</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Experience & Education</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Current Position</h3>
+                    <p><strong>Company/Organization</strong> | Year - Present</p>
+                    <p>Brief description of your current role and responsibilities.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Previous Experience</h3>
+                    <p><strong>Company/Organization</strong> | Year - Year</p>
+                    <p>Description of previous role and key achievements.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Education</h3>
+                    <p><strong>Institution</strong> | Year</p>
+                    <p>Degree or qualification obtained.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Get In Touch</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>Email</h3>
+                    <p>your.email@example.com</p>
+                </div>
+                <div class="contact-item">
+                    <h3>LinkedIn</h3>
+                    <p>linkedin.com/in/yourprofile</p>
+                </div>
+                <div class="contact-item">
+                    <h3>GitHub</h3>
+                    <p>github.com/yourusername</p>
+                </div>
+                <div class="contact-item">
+                    <h3>Location</h3>
+                    <p>Your City, Country</p>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
