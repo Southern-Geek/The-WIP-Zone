@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Platform Media Converter</title>
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <!-- Header -->
+                <div class="text-center mb-5">
+                    <h1 class="display-4 mb-3">
+                        <i class="fas fa-video me-3"></i>
+                        Media Converter
+                    </h1>
+                    <p class="lead text-muted">
+                        Convert videos from YouTube, Vimeo, and 1000+ other platforms to MP3, MP4, and more
+                    </p>
+                </div>
+
+                <!-- Main Conversion Form -->
+                <div class="card shadow-lg">
+                    <div class="card-body p-4">
+                        <!-- Mode Selection -->
+                        <div class="mb-4">
+                            <div class="btn-group w-100" role="group">
+                                <input type="radio" class="btn-check" name="conversionMode" id="singleMode" checked>
+                                <label class="btn btn-outline-primary" for="singleMode">
+                                    <i class="fas fa-link me-2"></i>Single URL
+                                </label>
+                                
+                                <input type="radio" class="btn-check" name="conversionMode" id="batchMode">
+                                <label class="btn btn-outline-primary" for="batchMode">
+                                    <i class="fas fa-list me-2"></i>Batch URLs
+                                </label>
+                                
+                                <input type="radio" class="btn-check" name="conversionMode" id="playlistMode">
+                                <label class="btn btn-outline-primary" for="playlistMode">
+                                    <i class="fas fa-play-circle me-2"></i>Playlist
+                                </label>
+                            </div>
+                        </div>
+
+                        <form id="convertForm">
+                            <!-- Single URL Input -->
+                            <div class="mb-4" id="singleUrlSection">
+                                <label for="urlInput" class="form-label fw-bold">
+                                    <i class="fas fa-link me-2"></i>Video URL
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-globe"></i>
+                                    </span>
+                                    <input 
+                                        type="url" 
+                                        class="form-control form-control-lg" 
+                                        id="urlInput" 
+                                        placeholder="Paste video URL here (YouTube, Vimeo, etc.)"
+                                    >
+                                </div>
+                                <div class="form-text">
+                                    Supports YouTube, Vimeo, Dailymotion, Facebook, Instagram, and many more platforms
+                                </div>
+                            </div>
+
+                            <!-- Batch URL Input -->
+                            <div class="mb-4 d-none" id="batchUrlSection">
+                                <label for="batchUrlInput" class="form-label fw-bold">
+                                    <i class="fas fa-list me-2"></i>Multiple URLs
+                                </label>
+                                <textarea 
+                                    class="form-control" 
+                                    id="batchUrlInput" 
+                                    rows="6"
+                                    placeholder="Paste multiple URLs here, one per line&#10;https://www.youtube.com/watch?v=example1&#10;https://vimeo.com/example2&#10;https://www.dailymotion.com/example3"
+                                ></textarea>
+                                <div class="form-text">
+                                    Enter one URL per line. Up to 50 URLs supported for batch processing.
+                                </div>
+                            </div>
+
+                            <!-- Playlist URL Input -->
+                            <div class="mb-4 d-none" id="playlistUrlSection">
+                                <label for="playlistUrlInput" class="form-label fw-bold">
+                                    <i class="fas fa-play-circle me-2"></i>Playlist URL
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-list-ul"></i>
+                                    </span>
+                                    <input 
+                                        type="url" 
+                                        class="form-control form-control-lg" 
+                                        id="playlistUrlInput" 
+                                        placeholder="Paste playlist URL here"
+                                    >
+                                </div>
+                                <div class="form-text">
+                                    Supports YouTube playlists, Vimeo albums, SoundCloud sets, and more
+                                </div>
+                            </div>
+
+                            <!-- Format Selection -->
+                            <div class="row mb-4">
+                                <div class="col-md-4">
+                                    <label for="formatSelect" class="form-label fw-bold">
+                                        <i class="fas fa-file-export me-2"></i>Output Format
+                                    </label>
+                                    <select class="form-select" id="formatSelect">
+                                        <optgroup label="Audio Formats">
+                                            <option value="mp3" selected>MP3 (Most Compatible)</option>
+                                            <option value="aac">AAC (High Quality)</option>
+                                            <option value="wav">WAV (Uncompressed)</option>
+                                            <option value="m4a">M4A (Apple Format)</option>
+                                            <option value="flac">FLAC (Lossless)</option>
+                                        </optgroup>
+                                        <optgroup label="Video Formats">
+                                            <option value="mp4">MP4 (Most Compatible)</option>
+                                            <option value="webm">WebM (Web Optimized)</option>
+                                            <option value="mkv">MKV (High Quality)</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="qualitySelect" class="form-label fw-bold">
+                                        <i class="fas fa-sliders-h me-2"></i>Quality
+                                    </label>
+                                    <select class="form-select" id="qualitySelect">
+                                        <option value="best" selected>Best Available</option>
+                                        <option value="1080p">1080p</option>
+                                        <option value="720p">720p</option>
+                                        <option value="480p">480p</option>
+                                        <option value="360p">360p</option>
+                                        <option value="worst">Smallest File</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="bitrateSelect" class="form-label fw-bold">
+                                        <i class="fas fa-tachometer-alt me-2"></i>Bitrate
+                                    </label>
+                                    <select class="form-select" id="bitrateSelect">
+                                        <option value="" selected>Auto</option>
+                                        <option value="320k">320k (Highest)</option>
+                                        <option value="256k">256k (High)</option>
+                                        <option value="192k">192k (Standard)</option>
+                                        <option value="128k">128k (Good)</option>
+                                        <option value="96k">96k (Lower)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Advanced Options -->
+                            <div class="mb-4">
+                                <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#advancedOptions">
+                                    <i class="fas fa-cog me-2"></i>Advanced Options
+                                </button>
+                                <div class="collapse mt-3" id="advancedOptions">
+                                    <div class="card card-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="trimStart" class="form-label">
+                                                    <i class="fas fa-cut me-2"></i>Trim Start (seconds)
+                                                </label>
+                                                <input type="number" class="form-control" id="trimStart" placeholder="0" min="0">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="trimEnd" class="form-label">
+                                                    <i class="fas fa-cut me-2"></i>Trim End (seconds)
+                                                </label>
+                                                <input type="number" class="form-control" id="trimEnd" placeholder="Leave empty for full length" min="0">
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-md-6">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="audioOnly">
+                                                    <label class="form-check-label" for="audioOnly">
+                                                        Extract Audio Only
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="normalizeAudio">
+                                                    <label class="form-check-label" for="normalizeAudio">
+                                                        Normalize Audio
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Convert Button -->
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-lg btn-primary" id="convertBtn">
+                                    <i class="fas fa-play me-2"></i>
+                                    Start Conversion
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Progress Section -->
+                <div class="card mt-4 d-none" id="progressCard">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="spinner-border spinner-border-sm text-primary me-3" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <h5 class="mb-0" id="progressTitle">Processing...</h5>
+                        </div>
+                        
+                        <div class="progress mb-3" style="height: 10px;">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" 
+                                 id="progressBar" 
+                                 role="progressbar" 
+                                 style="width: 0%">
+                            </div>
+                        </div>
+                        
+                        <div class="row text-center">
+                            <div class="col">
+                                <small class="text-muted" id="progressStatus">Initializing...</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Success Section -->
+                <div class="card mt-4 d-none" id="successCard">
+                    <div class="card-body text-center">
+                        <div class="text-success mb-3">
+                            <i class="fas fa-check-circle fa-3x"></i>
+                        </div>
+                        <h4 class="text-success mb-3">Conversion Complete!</h4>
+                        
+                        <div class="mb-4">
+                            <p class="mb-2"><strong>Title:</strong> <span id="videoTitle">-</span></p>
+                            <p class="mb-2"><strong>Duration:</strong> <span id="videoDuration">-</span></p>
+                        </div>
+                        
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                            <button class="btn btn-success btn-lg me-md-2" id="downloadBtn">
+                                <i class="fas fa-download me-2"></i>
+                                Download File
+                            </button>
+                            <button class="btn btn-secondary" id="newConversionBtn">
+                                <i class="fas fa-plus me-2"></i>
+                                New Conversion
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Error Section -->
+                <div class="alert alert-danger mt-4 d-none" id="errorAlert">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-exclamation-triangle fa-2x me-3"></i>
+                        <div>
+                            <h5 class="alert-heading mb-2">Conversion Failed</h5>
+                            <p class="mb-0" id="errorMessage">An error occurred during conversion.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Supported Platforms -->
+                <div class="card mt-5">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="fas fa-info-circle me-2"></i>
+                            Supported Platforms
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row text-center">
+                            <div class="col-6 col-md-3 mb-3">
+                                <i class="fab fa-youtube fa-2x text-danger mb-2"></i>
+                                <div class="small">YouTube</div>
+                            </div>
+                            <div class="col-6 col-md-3 mb-3">
+                                <i class="fab fa-vimeo fa-2x text-info mb-2"></i>
+                                <div class="small">Vimeo</div>
+                            </div>
+                            <div class="col-6 col-md-3 mb-3">
+                                <i class="fab fa-facebook fa-2x text-primary mb-2"></i>
+                                <div class="small">Facebook</div>
+                            </div>
+                            <div class="col-6 col-md-3 mb-3">
+                                <i class="fab fa-instagram fa-2x text-warning mb-2"></i>
+                                <div class="small">Instagram</div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <small class="text-muted">And 1000+ more platforms supported by yt-dlp</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="text-center mt-5">
+                    <small class="text-muted">
+                        For personal use only. Please respect copyright and terms of service of video platforms.
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
